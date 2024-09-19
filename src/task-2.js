@@ -13,13 +13,21 @@ class Storage {
     this.#items.push(newItem);
   }
 
+  // removeItem(itemToRemove) {
+  //   const index = this.#items.indexOf(itemToRemove);
+  //   if (index !== -1) {
+  //     this.#items.splice(index, 1);
+  //   }
+  // }
   removeItem(itemToRemove) {
-    const index = this.#items.indexOf(itemToRemove);
-    if (index !== -1) {
-      this.#items.splice(index, 1);
+    for (let i = 0; i < this.#items.length; i++) {
+      if (this.#items[i] === itemToRemove) {
+        this.#items.splice(i, 1); 
+        break;
+      }
     }
   }
-
+    
   
 }
 
