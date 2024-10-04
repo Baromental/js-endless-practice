@@ -66,7 +66,44 @@ const images = [
 
 const gallery = document.querySelector('.gallery');
 
-function galleryTemplate(images) {
+gallery.addEventListener('click', onGalleryClick);
+
+function onGalleryClick(e) {
+  e.preventDefault()
+  
+  if (e.target === e.currentTarget) return;
+
+  const liItem = e.target.closest('li');
+  const id = liItem.dataset.id;
+  const image = images.find(el => el.id === id);
+  const modalInstance = basicLightbox.create(
+    `<div>
+      <img
+        src="${image.original}"
+        alt="${image.description}"
+      />
+    </div>`
+    ,
+    {
+      onShow: instance => {
+        document.addEventListener('keydown', onModalClose);
+      },
+      onClose: instance => {
+        document.removeEventListener('keydown', onModalClose);
+      },
+    }
+  )
+
+  modalInstance.show();
+  
+  function onModalClose(e) {
+    if(e.code === 'Escape'){
+      modalInstance.close();   
+    }
+  }
+}
+
+function galleryTemplate() {
     const galleryTemplate = images.map(({preview, original, description})  => {
         return ` <li class="gallery-item">
             <a class="gallery-link" href="${original}" >
@@ -82,5 +119,4 @@ function galleryTemplate(images) {
     return gallery.insertAdjacentHTML('afterbegin', galleryTemplate.join(''));
 }
 
-galleryTemplate(images);
-
+galleryTemplate();
