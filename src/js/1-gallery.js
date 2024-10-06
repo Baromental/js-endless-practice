@@ -1,3 +1,6 @@
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
+
 const images = [
     {
       preview:
@@ -66,43 +69,6 @@ const images = [
 
 const gallery = document.querySelector('.gallery');
 
-gallery.addEventListener('click', onGalleryClick);
-
-function onGalleryClick(e) {
-  e.preventDefault()
-  
-  if (e.target === e.currentTarget) return;
-
-  const liItem = e.target.closest('li');
-  const id = liItem.dataset.id;
-  const image = images.find(el => el.id === id);
-  const modalInstance = basicLightbox.create(
-    `<div>
-      <img
-        src="${image.original}"
-        alt="${image.description}"
-      />
-    </div>`
-    ,
-    {
-      onShow: instance => {
-        document.addEventListener('keydown', onModalClose);
-      },
-      onClose: instance => {
-        document.removeEventListener('keydown', onModalClose);
-      },
-    }
-  )
-
-  modalInstance.show();
-  
-  function onModalClose(e) {
-    if(e.code === 'Escape'){
-      modalInstance.close();   
-    }
-  }
-}
-
 function galleryTemplate() {
     const galleryTemplate = images.map(({preview, original, description})  => {
         return ` <li class="gallery-item">
@@ -110,7 +76,6 @@ function galleryTemplate() {
                 <img
                     class="gallery-image"
                     src="${preview}"
-                    data-source="${original}"
                     alt="${description}"
                 />
             </a>
@@ -120,3 +85,10 @@ function galleryTemplate() {
 }
 
 galleryTemplate();
+
+new SimpleLightbox('.gallery-item a', { 
+  captions: true,
+  captionsData: 'alt',
+  captionPosition: 'bottom',
+  captionDelay: 250,
+});

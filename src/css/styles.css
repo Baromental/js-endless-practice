@@ -6,7 +6,7 @@
 */
 @import url('./reset.css');
 @import url('./vite-promo.css');
-@import url('./header.css');
+@import url('./common.css');
 
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
@@ -23,3 +23,96 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 } 
+
+.gallery {
+  padding: 24px 156px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.gallery-item {
+  width: calc((100% - 48px) / 3);
+  transition: transform 0.3s;
+}
+
+.gallery-item .gallery-link:hover {
+  cursor: zoom-in;
+}
+
+.gallery-item:hover {
+  transform: scale(1.1);
+}
+
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 24px;
+  width: 360px;
+}
+
+.feedback-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.feedback-form input {
+  margin-bottom: 8px;
+  height: 40px;
+  border: 1px solid #808080;
+}
+
+.feedback-form textarea {
+  margin-bottom: 16px;
+  height: 80px;
+  border: 1px solid #808080;
+  resize: none;
+}
+
+.feedback-form input,
+.feedback-form textarea {
+  border-radius: 4px;
+  padding: 8px 16px;
+}
+
+.feedback-form input:hover,
+.feedback-form textarea:hover {
+  border: 1px solid #000000;
+}
+
+.feedback-form button {
+  align-self: flex-start;
+  padding: 8px 16px;
+  border: transparent;
+  color: #fff;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.64px;
+  border-radius: 8px;
+  background: #4e75ff;
+}
+
+.feedback-form button:hover,
+.feedback-form button:focus {
+  background: #6c8cff;
+}
+
+.simple-lightbox {
+  background-color: #2e2f42cc;
+}
+
+.simple-lightbox .sl-navigation,
+.simple-lightbox .sl-counter {
+  color: #ffffff; 
+}
+
+.simple-lightbox .sl-close {
+  color: #ffffff;
+}
