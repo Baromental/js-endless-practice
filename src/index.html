@@ -10,7 +10,7 @@
   <body>
     
     <div class="search-container">
-      <form id="search-form">
+      <form class="search-form">
         <label for="search-input"></label>
         <input type="text" id="search-input" placeholder="Search images..." name="search" required>
         <button type="submit">Search</button>
@@ -19,7 +19,9 @@
   
     <div id="loading-indicator" class="hidden">Loading images, please wait...</div>
   
-    <div id="gallery-container"></div>
+    <div id="gallery-container">
+      <ul class="gallery"></ul>
+    </div>
 
     <script src="./main.js" type="module"></script>
 
