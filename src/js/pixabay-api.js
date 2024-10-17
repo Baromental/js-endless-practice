@@ -12,10 +12,11 @@ export class PhotoApi {
             q: searchValue,
             image_type:  'photo',
             orientation : 'horizontal',
-            safesearch :  true,
         });
         const url = `${PhotoApi.BASE_URL}${PhotoApi.END_POINT}?${searchParams}`;
 
-        return fetch(url).then(res => res.json());
+        return fetch(url)
+        .then(res => res.json())
+        .catch(error => alert(error));
     }
 }
