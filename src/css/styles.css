@@ -1,11 +1,4 @@
-/**
-  |============================
-  | include css partials with
-  | default @import url()
-  |============================
-*/
-@import url('./reset.css');
-@import url('./vite-promo.css');
+
 @import url('./common.css');
 
 :root {
@@ -13,10 +6,7 @@
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-
   color: #242424;
-  background-color: rgba(255, 255, 255, 0.87);
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -24,131 +14,141 @@
   -webkit-text-size-adjust: 100%;
 } 
 
-.timer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  font-family: Arial, sans-serif;
-  font-size: 3rem;
-  color: #000;
-  margin-top: 20px;
-}
-
-.timer .field {
+.container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin: 0 1rem;
-}
-
-.timer .field .value {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-}
-
-#datetime-picker {
-  max-width: 300px;
-  height: 31px;
-  margin-bottom: 10px;
-}
-
-[data-start] {
-  max-width: 150px;
-
-  background-color: transparent;
-  color: #000;
-  padding: 10px;
-  border: 1px solid #4caf50;
-  border-radius: 4px;
-  cursor: pointer;
-  width: 100%;
-}
-
-[data-start]:hover {
-  background-color: #4caf50;
-  color: #fff;
-}
-
-.is-disabled{
-  color: darkgrey;
-  background-color: gainsboro;
-  border: 1px solid darkgrey;
-}
-
-.is-disabled:hover {
-  color: darkgrey;
-  background-color: gainsboro;
-  border: 1px solid darkgrey;
-}
-
-.timer .field .label {
-  font-size: 1.5rem;
+  padding: 36px;
+  margin: 0 auto;
 }
 
 .form {
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  margin-bottom: 32px;
 }
 
-.form label {
-  display: block;
-  margin-bottom: 8px;
-}
-
-.form input[name='delay'] {
-  width: calc(100% - 16px);
-  padding: 8px;
-  box-sizing: border-box;
-}
-
-.form .state-container {
-  width: 200px;
-  border: 1px solid #ccc;
+.search-input {
+  width: 272px;
+  height: 40px;
   border-radius: 4px;
-  overflow: hidden;
-  margin-bottom: 10px;
+  border: 1px solid #808080;
+  color: #808080;
+  font-family: Montserrat;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.64px;
+  padding: 8px 16px;
+  outline: transparent;
 }
 
-.form .state-container input {
+.search-input:focus {
+  border: 1px solid #4E75FF;
+}
+
+.search-input:hover {
+  border: 1px solid #000;
+}
+
+.search-btn {
+  border-radius: 8px;
+  background: #4E75FF;
+  color: #FFF;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 0.64px;
+  border: transparent;
+  padding: 8px 16px;
+}
+
+.search-btn:hover {
+  background-color: #6C8CFF;
+}
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+
+}
+
+.gallery-item {
+  transition: transform 0.3s;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  overflow: hidden;
+}
+
+.gallery-item img {
+  object-fit: cover;
+  height: 300px;
+  width: 400px;
+}
+
+.gallery-item .gallery-link:hover {
+  cursor: zoom-in;
+}
+
+
+.gallery-item:hover {
+  transform: scale(1.03);
+}
+
+.image-desc {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 8px 0;
+}
+
+.image-desc-item {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.image-desc-item>p:first-child {
+  font-weight: 600;
+}
+
+.loader.hidden {
   display: none;
 }
 
-.form .state-container label {
-  cursor: pointer;
-  display: block;
-  padding: 8px;
-  background-color: #f0f0f0;
-  border-bottom: 1px solid #ccc;
+.loader {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: inline-block;
+  position: relative;
+  background: linear-gradient(0deg, rgba(255, 61, 0, 0.2) 33%, #ff3d00 100%);
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
 }
 
-.form .state-container label:last-child {
-  border-bottom: none;
+.loader::after {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffffff;
 }
 
-.form .state-container input:checked + label {
-  background-color: #4caf50;
-  color: #fff;
-}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg)
+  }
 
-.form button {
-  background-color: transparent;
-  color: #000;
-  padding: 10px;
-  border: 1px solid #4caf50;
-  border-radius: 4px;
-  cursor: pointer;
-  width: calc(100% + 2px);
-  margin-top: 10px;
-}
-
-.form button:hover {
-  background-color: #4caf50;
-  color: #fff;
-}
-
-.iziToast {
-  left: -20%;
+  100% {
+    transform: rotate(360deg)
+  }
 }
