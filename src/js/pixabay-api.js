@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const APIKey = '42006022-41a20d969efbb704c546dcbcd';
 
 export class PhotoApi {
@@ -7,16 +9,16 @@ export class PhotoApi {
     constructor(){}
 
     getPhotos(searchValue){     
-        const searchParams = new URLSearchParams({
+        const params = new URLSearchParams({
             key: APIKey,
             q: searchValue,
             image_type:  'photo',
             orientation : 'horizontal',
+            page: 1,
+            per_page: 15,
         });
-        const url = `${PhotoApi.BASE_URL}${PhotoApi.END_POINT}?${searchParams}`;
+        const url = `${PhotoApi.BASE_URL}${PhotoApi.END_POINT}?${params}`;
 
-        return fetch(url)
-        .then(res => res.json())
-        .catch(error => alert(error));
+        return axios(url).then(res => res.data)
     }
 }
