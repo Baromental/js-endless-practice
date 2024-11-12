@@ -6,6 +6,7 @@ import "izitoast/dist/css/iziToast.min.css";
 const form = document.querySelector('.form');
 const gallery = document.querySelector('.gallery');
 const loadingIndicator = document.querySelector('.loader')
+const loadBtn = document.querySelector('.load-btn')
 const photoApi = new PhotoApi();
 
 
@@ -39,4 +40,16 @@ function onFormSubmit(e) {
         }
     } )
     
+}
+
+function changeBtnStatus(){
+
+}
+
+function showLoadBtn() {
+    loadBtn.classList.remove('hidden');
+}
+
+function hideLoadBtn() {
+    loadBtn.classList.add('hidden');
 }
