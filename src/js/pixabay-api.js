@@ -8,7 +8,7 @@ export class PhotoApi {
 
     constructor(){}
 
-    getPhotos(searchValue){     
+    async getPhotos(searchValue){     
         const params = new URLSearchParams({
             key: APIKey,
             q: searchValue,
@@ -19,6 +19,8 @@ export class PhotoApi {
         });
         const url = `${PhotoApi.BASE_URL}${PhotoApi.END_POINT}?${params}`;
 
-        return axios(url).then(res => res.data)
+        const response = await axios(url);
+
+        return response.data
     }
 }

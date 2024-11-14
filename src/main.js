@@ -32,7 +32,7 @@ function onFormSubmit(e) {
                 message: 'Sorry, there are no images matching your search query. Please try again!',
                 position: 'topRight',
                 timeout: 3000,
-              });
+            });
 
         } else {
             loadingIndicator.classList.add('hidden');
