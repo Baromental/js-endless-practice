@@ -115,10 +115,6 @@
   font-weight: 600;
 }
 
-.loader.hidden {
-  display: none;
-}
-
 .loader {
   width: 48px;
   height: 48px;
@@ -165,4 +161,12 @@
   border: transparent;
   padding: 8px 16px;
   margin-top: 32px;
+}
+
+.load-btn:hover {
+  background-color: #6C8CFF;
+}
+
+.hidden {
+  display: none;
 }

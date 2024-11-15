@@ -3,17 +3,21 @@ import { galleryTemplate } from './js/render-functions';
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
-const form = document.querySelector('.form');
-const gallery = document.querySelector('.gallery');
-const loadingIndicator = document.querySelector('.loader')
-const loadBtn = document.querySelector('.load-btn')
+const refs = {
+    form: document.querySelector('.form'),
+    gallery: document.querySelector('.gallery'),
+    loadingIndicator: document.querySelector('.loader'),
+    loadBtn: document.querySelector('.load-btn')
+};
+
 const photoApi = new PhotoApi();
 
-
-form.addEventListener('submit', onFormSubmit);
+refs.form.addEventListener('submit', onFormSubmit);
+refs.loadBtn.addEventListener('click', onLoadMoreClick)
 
 function onFormSubmit(e) {
     e.preventDefault();
+
     const searchValue = e.target.elements.search.value
     if (searchValue.trim() === '') {
         iziToast.show({
@@ -23,11 +27,13 @@ function onFormSubmit(e) {
         });
         return;
     }
-    loadingIndicator.classList.remove('hidden');
+
+    showLoader();
+
     photoApi.getPhotos(searchValue).then(res=> {
-        gallery.innerHTML = '';
+        refs.gallery.innerHTML = '';
         if (res.hits.length === 0) {
-            loadingIndicator.classList.add('hidden');
+            hideLoader();
             iziToast.show({
                 message: 'Sorry, there are no images matching your search query. Please try again!',
                 position: 'topRight',
@@ -35,21 +41,41 @@ function onFormSubmit(e) {
             });
 
         } else {
-            loadingIndicator.classList.add('hidden');
+            hideLoader();
             galleryTemplate(res.hits)
         }
     } )
     
 }
 
+async function onLoadMoreClick(){
+    photoApi.page += 1;
+
+    showLoader()
+
+    const result = await photoApi.getPhotos();
+    const markup = galleryTemplate(result.hits);
+    refs.gallery.insertAdjacentHTML('beforeend', markup);
+}
+
 function changeBtnStatus(){
 
 }
 
+function showLoader() {
+    refs.loadingIndicator.classList.remove('hidden');
+}
+
+function hideLoader() {
+    refs.loadingIndicator.classList.add('hidden');
+}
+
 function showLoadBtn() {
-    loadBtn.classList.remove('hidden');
+    refs.loadBtn.classList.remove('hidden');
 }
 
 function hideLoadBtn() {
-    loadBtn.classList.add('hidden');
+    refs.loadBtn.classList.add('hidden');
 }
+
+
