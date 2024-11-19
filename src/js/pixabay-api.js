@@ -9,7 +9,7 @@ export class PhotoApi {
     constructor(){
         this.query = '';
         this.page = 1;
-        this.pageSize = 15;
+        this.pageSize = 16;
         this.totalResults = 0;
     }
 
