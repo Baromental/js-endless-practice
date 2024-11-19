@@ -1,5 +1,5 @@
 import { PhotoApi } from './js/pixabay-api';
-import { gallerysTemplate } from './js/render-functions-test';
+import { gallerysTemplate } from './js/render-functions';
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 import SimpleLightbox from 'simplelightbox';
@@ -78,7 +78,7 @@ async function onLoadMoreClick() {
     }
 }
 
-function changeBtnState(params) {
+function changeBtnState() {
     if (photoApi.page * photoApi.pageSize >= photoApi.totalResults) {
         hideLoadBtn();
     } else {

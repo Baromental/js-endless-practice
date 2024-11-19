@@ -14,6 +14,3 @@ function galleryTemplate({webformatURL, largeImageURL, tags, likes, views, comme
 export function gallerysTemplate(searchResult) {
   return searchResult.map(galleryTemplate).join('');
 }
-  
-
-
